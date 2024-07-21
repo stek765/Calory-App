@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>CaloryCounter</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        height: 100vh;
+        margin: 0;
+        background: linear-gradient(to right, #8c08e6, #0d0c0c);
+      }
+
+      .container {
+        background: white;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        width: 80%; /* Adjust width as needed */
+        max-width: 600px; /* Maximum width */
+        text-align: center;
+      }
+
+      h1 {
+        margin-bottom: 20px;
+      }
+
+      form {
+        margin-bottom: 20px;
+      }
+
+      #resultTable {
+        border-collapse: collapse;
+        width: 100%;
+      }
+
+      #resultTable, #resultTable th, #resultTable td {
+        border: 1px solid black;
+      }
+
+      #resultTable th, #resultTable td {
+        padding: 8px;
+        text-align: left;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>CaloryCounter</h1>
+      <form id="foodForm">
+        <input type="text" id="foodInput" placeholder="Inserisci alimento" required>
+        <button type="submit">Cerca</button>
+      </form>
+      <table id="resultTable">
+        <thead>
+          <tr>
+            <th>Informazione</th>
+            <th>Valore</th>
+          </tr>
+        </thead>
+        <tbody id="resultBody">
+        </tbody>
+      </table>
+    </div>
+    <script src="./renderer.js"></script>
+  </body>
+</html>
