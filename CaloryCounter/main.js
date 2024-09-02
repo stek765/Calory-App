@@ -16,6 +16,9 @@ function createWindow () {
 
   mainWindow.loadFile('index.html');
   mainWindow.center();
+
+  // Open the DevTools automatically
+ // mainWindow.webContents.openDevTools(); 
 }
 
 app.on('ready', createWindow);
@@ -32,7 +35,7 @@ app.on('activate', () => {
   }
 });
 
-ipcMain.on('search-food', async (event, foodName) => {
+ipcMain.on('search-food', async (event, { foodName, weight }) => {
   const url = `https://www.fatsecret.it/calorie-nutrizione/search?q=${encodeURIComponent(foodName)}`;
 
   try {
@@ -41,10 +44,9 @@ ipcMain.on('search-food', async (event, foodName) => {
 
     // Trova il primo risultato delle calorie
     const caloriesElement = $('.smallText.greyText.greyLink').first();
-  
-
     const caloriesText = caloriesElement.text().trim();
 
+    console.log(`Found calories text: ${caloriesText}`);  // Debug log to track what's found
 
     event.reply('food-result', caloriesText); // Invia il testo completo delle calorie
   } catch (error) {
