@@ -7,6 +7,9 @@ This is electron, so to run it: npm start or electron .
 ## Setup 
 you can use the provided SCRIPT to create a VirtualEnv and install dependencies: source setup_script.sh     
 
+
+
+
 ## Images
 
 
