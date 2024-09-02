@@ -18,7 +18,7 @@ function createWindow () {
   mainWindow.center();
 
   // Open the DevTools automatically
- // mainWindow.webContents.openDevTools(); 
+  // mainWindow.webContents.openDevTools(); 
 }
 
 app.on('ready', createWindow);
@@ -46,7 +46,7 @@ ipcMain.on('search-food', async (event, { foodName, weight }) => {
     const caloriesElement = $('.smallText.greyText.greyLink').first();
     const caloriesText = caloriesElement.text().trim();
 
-    console.log(`Found calories text: ${caloriesText}`);  // Debug log to track what's found
+    console.log(`Found calories text: ${caloriesText}`); 
 
     event.reply('food-result', caloriesText); // Invia il testo completo delle calorie
   } catch (error) {
