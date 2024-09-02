@@ -13,6 +13,8 @@ if [[ "$VIRTUAL_ENV" != "" ]]; then
 
     # Esecuzione di npm install per installare le dipendenze Node.js
     npm install
+    npm install axios
+
 
     echo "Setup completato con successo!"
 else
