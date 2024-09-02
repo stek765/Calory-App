@@ -3,8 +3,10 @@ const path = require('path');
 const axios = require('axios');
 const cheerio = require('cheerio');
 
-function createWindow () {
-  const mainWindow = new BrowserWindow({
+let mainWindow;
+
+function createWindow() {
+  mainWindow = new BrowserWindow({
     width: 800,
     height: 600,
     webPreferences: {
@@ -18,10 +20,10 @@ function createWindow () {
   mainWindow.center();
 
   // Open the DevTools automatically
-  // mainWindow.webContents.openDevTools(); 
+  // mainWindow.webContents.openDevTools();
 }
 
-app.on('ready', createWindow);
+app.whenReady().then(createWindow);
 
 app.on('window-all-closed', () => {
   if (process.platform !== 'darwin') {
@@ -42,13 +44,12 @@ ipcMain.on('search-food', async (event, { foodName, weight }) => {
     const response = await axios.get(url);
     const $ = cheerio.load(response.data);
 
-    // Trova il primo risultato delle calorie
     const caloriesElement = $('.smallText.greyText.greyLink').first();
     const caloriesText = caloriesElement.text().trim();
 
-    console.log(`Found calories text: ${caloriesText}`); 
+    console.log(`Found calories text: ${caloriesText}`);
 
-    event.reply('food-result', caloriesText); // Invia il testo completo delle calorie
+    event.reply('food-result', caloriesText); // Send back the calorie information
   } catch (error) {
     event.reply('food-result', 'Errore durante la ricerca delle calorie.');
     console.error(error);
